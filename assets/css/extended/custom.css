@@ -1,0 +1,291 @@
+/* ========================================
+   Naiveda Home — quiet editorial garden
+   ======================================== */
+
+.home-custom {
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.home-hero {
+    position: relative;
+    padding: 64px 0 72px;
+    text-align: center;
+}
+
+.home-hero::before {
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    width: 1px;
+    height: 26px;
+    background: var(--border);
+    content: "";
+}
+
+.home-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 88px;
+    height: 88px;
+    margin: 0 auto 22px;
+    border: 1px solid color-mix(in srgb, var(--primary) 18%, transparent);
+    border-radius: 50%;
+    background: var(--tertiary);
+    color: var(--primary);
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+}
+
+.home-title {
+    margin: 0;
+    font-size: 38px;
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+}
+
+.home-description {
+    margin: 14px 0 0;
+    color: var(--content);
+    font-size: 17px;
+}
+
+.home-subtitle {
+    margin: 7px 0 0;
+    color: var(--secondary);
+    font-size: 14px;
+    letter-spacing: 0.08em;
+}
+
+.home-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin-top: 20px;
+    color: var(--secondary);
+    font-size: 14px;
+}
+
+.home-links a,
+.home-section-more,
+.home-post-title a,
+.home-note-item a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.home-links a {
+    color: var(--secondary);
+}
+
+.home-links a:hover,
+.home-section-more:hover,
+.home-post-title a:hover,
+.home-note-item a:hover {
+    color: var(--primary);
+}
+
+.home-section {
+    margin-bottom: 64px;
+}
+
+.home-section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border);
+}
+
+.home-section-header h2 {
+    margin: 0;
+    font-size: 21px;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+}
+
+.home-section-more {
+    color: var(--secondary);
+    font-size: 13px;
+}
+
+.home-section-more span {
+    display: inline-block;
+    margin-left: 3px;
+    transition: transform 180ms ease;
+}
+
+.home-section-more:hover span {
+    transform: translateX(3px);
+}
+
+.home-post-list,
+.home-note-list {
+    width: 100%;
+}
+
+.home-post-item {
+    display: grid;
+    grid-template-columns: 48px 100px minmax(0, 1fr);
+    column-gap: 16px;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.home-post-index,
+.home-post-date,
+.home-note-item time {
+    color: var(--secondary);
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+}
+
+.home-post-index,
+.home-post-date {
+    padding-top: 4px;
+}
+
+.home-post-main {
+    min-width: 0;
+}
+
+.home-post-title {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.4;
+    font-weight: 650;
+}
+
+.home-post-title a:hover,
+.home-note-item a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+}
+
+.home-post-summary {
+    margin: 9px 0 0;
+    color: var(--secondary);
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+.home-post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 11px;
+}
+
+.home-post-tags a {
+    color: var(--secondary);
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.home-post-tags a:hover {
+    color: var(--primary);
+}
+
+.home-note-item {
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr);
+    align-items: baseline;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.home-note-item a {
+    font-size: 15px;
+}
+
+.home-empty {
+    margin: 0;
+    padding: 24px 0;
+    color: var(--secondary);
+}
+
+.home-stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 70px 0 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    color: var(--secondary);
+    font-size: 12px;
+}
+
+@media screen and (max-width: 700px) {
+    .home-hero {
+        padding: 42px 0 52px;
+    }
+
+    .home-avatar {
+        width: 76px;
+        height: 76px;
+        font-size: 29px;
+    }
+
+    .home-title {
+        font-size: 32px;
+    }
+
+    .home-description {
+        font-size: 16px;
+    }
+
+    .home-section {
+        margin-bottom: 48px;
+    }
+
+    .home-post-item {
+        grid-template-columns: 34px minmax(0, 1fr);
+        column-gap: 12px;
+        padding: 22px 0;
+    }
+
+    .home-post-index {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+    }
+
+    .home-post-date {
+        grid-column: 2;
+        grid-row: 1;
+        padding-top: 0;
+        margin-bottom: 6px;
+    }
+
+    .home-post-main {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .home-post-title {
+        font-size: 18px;
+    }
+
+    .home-note-item {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .home-stats {
+        justify-content: flex-start;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-section-more span {
+        transition: none;
+    }
+}

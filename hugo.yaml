@@ -1,19 +1,51 @@
+baseURL: "https://naiveda.github.io/"
+title: "Naiveda"
+theme: ["PaperMod"]
+
+defaultContentLanguage: zh
+
+languages:
+  zh:
+    locale: "zh-CN"
+    label: "简体中文"
+    weight: 1
+
+enableRobotsTXT: true
+enableEmoji: true
+hasCJKLanguage: true
+
+pagination:
+  pagerSize: 10
+
 outputs:
   home:
     - HTML
     - RSS
     - JSON
-baseURL: "https://naiveda.github.io/"
-languageCode: "zh-cn"
-title: "Naiveda"
-theme: ["PaperMod"]
 
-enableRobotsTXT: true
+taxonomies:
+  tag: tags
 
 params:
   env: production
+  author: "Naiveda"
   description: "记录学习、思考与实践"
   defaultTheme: auto
+  disableThemeToggle: false
+  DateFormat: "2006 年 1 月 2 日"
+
+  mainSections:
+    - posts
+    - notes
+
+  ShowReadingTime: true
+  ShowWordCount: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowToc: true
+  TocOpen: false
+  ShowRssButtonInSectionTermList: true
 
   fuseOpts:
     isCaseSensitive: false
@@ -26,43 +58,32 @@ params:
       - summary
       - content
 
-  ShowReadingTime: true
-  ShowWordCount: true
-  ShowPostNavLinks: true
-  ShowBreadCrumbs: true
-  ShowCodeCopyButtons: true
-  ShowToc: true
-
-  homeInfoParams:
-    Title: "你好 👋"
-    Content: "记录学习、思考与实践。"
-
 menu:
   main:
     - identifier: posts
       name: 文章
       url: /posts/
       weight: 10
-
+    - identifier: notes
+      name: 笔记
+      url: /notes/
+      weight: 20
     - identifier: archives
       name: 归档
       url: /archives/
-      weight: 20
-
+      weight: 30
     - identifier: tags
       name: 标签
       url: /tags/
-      weight: 30
-
+      weight: 40
     - identifier: search
       name: 搜索
       url: /search/
-      weight: 40
-
+      weight: 50
     - identifier: about
       name: 关于
       url: /about/
-      weight: 50
+      weight: 60
 
 caches:
   images:

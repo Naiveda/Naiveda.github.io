@@ -6,15 +6,21 @@ media:
     - image
 
 content:
+
+  # ==============================
+  # 文章
+  # ==============================
+
   - name: posts
     label: 文章
     type: collection
     path: content/posts
     format: yaml-frontmatter
 
-    filename:
-      template: "{year}-{month}-{day}-{primary}.md"
-      field: create
+    exclude:
+      - "_index.md"
+
+    filename: "{year}-{month}-{day}-{title}.md"
 
     view:
       fields:
@@ -24,6 +30,81 @@ content:
       primary: title
       sort:
         - date
+        - title
+      search:
+        - title
+        - description
+      default:
+        sort: date
+        order: desc
+
+    operations:
+      create: true
+      rename: true
+      delete: true
+
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+      - name: date
+        label: 发布日期
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: draft
+        label: 草稿
+        type: boolean
+        default: false
+      - name: description
+        label: 摘要
+        type: text
+      - name: tags
+        label: 标签
+        type: string
+        list: true
+      - name: hiddenInHomeList
+        label: 不在首页展示
+        type: boolean
+        default: false
+      - name: searchHidden
+        label: 不加入搜索
+        type: boolean
+        default: false
+      - name: body
+        label: 正文
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+  # ==============================
+  # 笔记
+  # ==============================
+
+  - name: notes
+    label: 笔记
+    type: collection
+    path: content/notes
+    format: yaml-frontmatter
+
+    exclude:
+      - "_index.md"
+
+    filename: "{year}-{month}-{day}-{hour}{minute}-{title}.md"
+
+    view:
+      fields:
+        - title
+        - date
+        - draft
+      primary: title
+      sort:
+        - date
+        - title
+      search:
         - title
       default:
         sort: date
@@ -39,30 +120,30 @@ content:
         label: 标题
         type: string
         required: true
-
       - name: date
-        label: 发布日期
+        label: 日期
         type: date
         required: true
         options:
           format: yyyy-MM-dd
-
       - name: draft
         label: 草稿
         type: boolean
         default: false
-
-      - name: description
-        label: 摘要
-        type: text
-
       - name: tags
         label: 标签
         type: string
         list: true
-
+      - name: hiddenInHomeList
+        label: 不在首页展示
+        type: boolean
+        default: false
+      - name: searchHidden
+        label: 不加入搜索
+        type: boolean
+        default: false
       - name: body
-        label: 正文
+        label: 内容
         type: rich-text
         options:
           format: markdown
@@ -71,3 +152,11 @@ content:
 settings:
   content:
     merge: true
+
+  commit:
+    identity: app
+    templates:
+      create: "content: create {path}"
+      update: "content: update {path}"
+      delete: "content: delete {path}"
+      rename: "content: rename {oldPath} -> {newPath}"

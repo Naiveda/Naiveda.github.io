@@ -1,0 +1,105 @@
+{{- define "main" -}}
+
+<div class="home-custom">
+
+    <section class="home-hero">
+        <div class="home-avatar" aria-hidden="true">N</div>
+
+        <h1 class="home-title">Naiveda</h1>
+
+        <p class="home-description">记录学习、思考与实践</p>
+        <p class="home-subtitle">Learning · Thinking · Making</p>
+
+        <div class="home-links" aria-label="外部链接">
+            <a href="https://github.com/Naiveda" target="_blank" rel="noopener noreferrer">GitHub</a>
+            {{- with site.Home.OutputFormats.Get "RSS" }}
+            <span aria-hidden="true">·</span>
+            <a href="{{ .RelPermalink }}">RSS</a>
+            {{- end }}
+        </div>
+    </section>
+
+    {{- $allPosts := where site.RegularPages "Section" "posts" -}}
+    {{- $homePosts := where $allPosts "Params.hiddenInHomeList" "!=" true -}}
+    {{- $homePosts = first 6 ($homePosts.ByDate.Reverse) -}}
+
+    <section class="home-section" aria-labelledby="latest-posts-title">
+        <div class="home-section-header">
+            <h2 id="latest-posts-title">最新文章</h2>
+            <a href="{{ "posts/" | relURL }}" class="home-section-more">查看全部 <span aria-hidden="true">→</span></a>
+        </div>
+
+        <div class="home-post-list">
+            {{- range $index, $page := $homePosts }}
+            <article class="home-post-item">
+                <div class="home-post-index" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</div>
+                <time class="home-post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+
+                <div class="home-post-main">
+                    <h3 class="home-post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                    <p class="home-post-summary">
+                        {{- if .Description -}}
+                            {{ .Description | plainify }}
+                        {{- else -}}
+                            {{ .Summary | plainify | truncate 120 }}
+                        {{- end -}}
+                    </p>
+
+                    {{- with .GetTerms "tags" }}
+                    <div class="home-post-tags" aria-label="文章标签">
+                        {{- range first 3 . }}
+                        <a href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a>
+                        {{- end }}
+                    </div>
+                    {{- end }}
+                </div>
+            </article>
+            {{- else }}
+            <p class="home-empty">还没有文章，先从一条记录开始。</p>
+            {{- end }}
+        </div>
+    </section>
+
+    {{- $allNotes := where site.RegularPages "Section" "notes" -}}
+    {{- $homeNotes := where $allNotes "Params.hiddenInHomeList" "!=" true -}}
+    {{- $homeNotes = first 6 ($homeNotes.ByDate.Reverse) -}}
+
+    {{- if gt (len $homeNotes) 0 }}
+    <section class="home-section home-notes-section" aria-labelledby="latest-notes-title">
+        <div class="home-section-header">
+            <h2 id="latest-notes-title">最近笔记</h2>
+            <a href="{{ "notes/" | relURL }}" class="home-section-more">查看全部 <span aria-hidden="true">→</span></a>
+        </div>
+
+        <div class="home-note-list">
+            {{- range $homeNotes }}
+            <article class="home-note-item">
+                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </article>
+            {{- end }}
+        </div>
+    </section>
+    {{- end }}
+
+    {{- $contentPages := union $allPosts $allNotes -}}
+    {{- $totalWords := 0 -}}
+    {{- range $contentPages }}
+        {{- $totalWords = add $totalWords .WordCount -}}
+    {{- end }}
+
+    <section class="home-stats" aria-label="站点统计">
+        <span>文章 {{ len $allPosts }}</span>
+        <span aria-hidden="true">·</span>
+        <span>笔记 {{ len $allNotes }}</span>
+        <span aria-hidden="true">·</span>
+        <span>标签 {{ len site.Taxonomies.tags }}</span>
+        <span aria-hidden="true">·</span>
+        <span>总字数 {{ $totalWords }}</span>
+        <span aria-hidden="true">·</span>
+        <span>建站于 2026</span>
+    </section>
+
+</div>
+
+{{- end -}}
