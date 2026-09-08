@@ -1,0 +1,38 @@
+baseURL: "https://naiveda.github.io/"
+languageCode: "zh-cn"
+title: "Naiveda"
+theme: ["PaperMod"]
+
+enableRobotsTXT: true
+
+params:
+  env: production
+  description: "记录学习、思考与实践"
+  defaultTheme: auto
+
+  ShowReadingTime: true
+  ShowWordCount: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowToc: true
+
+  homeInfoParams:
+    Title: "你好 👋"
+    Content: "记录学习、思考与实践。"
+
+menu:
+  main:
+    - identifier: posts
+      name: 文章
+      url: /posts/
+      weight: 10
+
+    - identifier: tags
+      name: 标签
+      url: /tags/
+      weight: 20
+
+caches:
+  images:
+    dir: :cacheDir/images
