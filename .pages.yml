@@ -1,0 +1,73 @@
+media:
+  input: static/images
+  output: /images
+  rename: safe
+  categories:
+    - image
+
+content:
+  - name: posts
+    label: 文章
+    type: collection
+    path: content/posts
+    format: yaml-frontmatter
+
+    filename:
+      template: "{year}-{month}-{day}-{primary}.md"
+      field: create
+
+    view:
+      fields:
+        - title
+        - date
+        - draft
+      primary: title
+      sort:
+        - date
+        - title
+      default:
+        sort: date
+        order: desc
+
+    operations:
+      create: true
+      rename: true
+      delete: true
+
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+
+      - name: date
+        label: 发布日期
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+
+      - name: draft
+        label: 草稿
+        type: boolean
+        default: false
+
+      - name: description
+        label: 摘要
+        type: text
+
+      - name: tags
+        label: 标签
+        type: string
+        list: true
+
+      - name: body
+        label: 正文
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+settings:
+  content:
+    merge: true
